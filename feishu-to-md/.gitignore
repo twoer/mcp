@@ -10,3 +10,4 @@ coverage/
 .claude/settings.local.json
 settings.local.json
 output/
+docs/
