@@ -11,3 +11,4 @@ coverage/
 settings.local.json
 output/
 docs/
+.codevanguard/
