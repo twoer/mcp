@@ -10,17 +10,13 @@
   "files": [
     "dist",
     "src/ast-lint-core",
-    "README.md",
-    "QUICKSTART.md",
-    "TEAM_USAGE.md",
-    "INSTALL.md"
+    "README.md"
   ],
   "scripts": {
     "build": "tsc",
     "dev": "tsx src/index.ts",
     "watch": "tsc --watch",
     "test": "node dist/index.js",
-    "test:integration": "npm run build && tsx test/integration.ts",
     "bundle": "node scripts/bundle-ast-lint.js",
     "prepublishOnly": "npm run build",
     "release": "bash scripts/release.sh"
