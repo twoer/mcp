@@ -1,0 +1,63 @@
+{
+  "name": "feishu-to-md-mcp",
+  "version": "1.1.2",
+  "description": "MCP server for converting Feishu/Lark documents to Markdown",
+  "type": "module",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "bin": {
+    "feishu-to-md-mcp": "./dist/index.js"
+  },
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE"
+  ],
+  "scripts": {
+    "dev": "tsup --watch",
+    "build": "tsup",
+    "type-check": "tsc --noEmit",
+    "prepare": "npm run build"
+  },
+  "keywords": [
+    "mcp",
+    "model-context-protocol",
+    "feishu",
+    "lark",
+    "markdown",
+    "converter",
+    "document",
+    "cdp",
+    "chrome-devtools-protocol"
+  ],
+  "author": "",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/twoer/mcp.git",
+    "directory": "feishu-to-md"
+  },
+  "bugs": {
+    "url": "https://github.com/twoer/mcp/issues"
+  },
+  "homepage": "https://github.com/twoer/mcp/tree/main/feishu-to-md#readme",
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.0.4",
+    "lodash-es": "^4.17.21",
+    "js-base64": "^3.7.7",
+    "mdast-util-to-markdown": "^2.1.2",
+    "mdast-util-gfm-strikethrough": "^2.0.0",
+    "mdast-util-gfm-task-list-item": "^2.0.0",
+    "mdast-util-gfm-table": "^2.0.0",
+    "mdast-util-math": "^3.0.0"
+  },
+  "devDependencies": {
+    "@types/node": "^22.10.2",
+    "@types/lodash-es": "^4.17.12",
+    "tsup": "^8.3.5",
+    "typescript": "^5.7.2"
+  },
+  "engines": {
+    "node": ">=22.0.0"
+  }
+}
