@@ -1,0 +1,163 @@
+{
+  "version": "0.6.0",
+  "defaults": {
+    "checkMode": "staged",
+    "failOnWarnings": false,
+    "ignorePatterns": [
+      "**/node_modules/**",
+      "**/.output/**",
+      "**/dist/**",
+      "**/build/**",
+      "**/.nuxt/**",
+      "**/.next/**",
+      "**/coverage/**",
+      "**/__tests__/**",
+      "**/tests/**",
+      "**/test/**",
+      "**/*.test.ts",
+      "**/*.test.js",
+      "**/*.spec.ts",
+      "**/*.spec.js",
+      "**/*.min.js",
+      "**/*.bundle.js"
+    ],
+    "concurrency": 5,
+    "maxFiles": 1000,
+    "maxFileSize": 1048576
+  },
+  "rules": {
+    "concern": {
+      "security": {
+        "enabled": true,
+        "rules": {
+          "no-hardcoded-secrets": {
+            "enabled": true,
+            "severity": "error"
+          },
+          "no-eval": {
+            "enabled": true,
+            "severity": "error"
+          },
+          "no-implicit-global": {
+            "enabled": true,
+            "severity": "warning"
+          }
+        }
+      },
+      "maintainability": {
+        "enabled": true,
+        "rules": {
+          "magic-number": {
+            "enabled": true,
+            "severity": "info",
+            "params": {
+              "allowedNumbers": [0, 1, -1, 2, 10, 24, 60, 100, 1000],
+              "ignorePatterns": ["index", "length", "size", "count", "width", "height"]
+            }
+          },
+          "integer-pixel-units": {
+            "enabled": true,
+            "severity": "info"
+          },
+          "long-function": {
+            "enabled": true,
+            "severity": "warning",
+            "params": {
+              "maxLines": 50
+            }
+          },
+          "complex-function": {
+            "enabled": true,
+            "severity": "warning",
+            "params": {
+              "maxComplexity": 10
+            }
+          },
+          "many-parameters": {
+            "enabled": true,
+            "severity": "warning",
+            "params": {
+              "maxParams": 4
+            }
+          },
+          "deep-nesting": {
+            "enabled": true,
+            "severity": "warning",
+            "params": {
+              "maxDepth": 4
+            }
+          },
+          "no-large-z-index": {
+            "enabled": true,
+            "severity": "warning",
+            "params": {
+              "max": 1000
+            }
+          }
+        }
+      },
+      "performance": {
+        "enabled": true,
+        "rules": {
+          "missing-lazy-load": {
+            "enabled": true,
+            "severity": "info"
+          },
+          "no-unnecessary-reactive": {
+            "enabled": true,
+            "severity": "info"
+          }
+        }
+      },
+      "accessibility": {
+        "enabled": true,
+        "rules": {
+          "alt-text-required": {
+            "enabled": true,
+            "severity": "warning"
+          },
+          "button-has-type": {
+            "enabled": true,
+            "severity": "warning"
+          }
+        }
+      }
+    },
+    "framework": {
+      "vue": {
+        "enabled": true,
+        "rules": {
+          "no-timer-without-cleanup": {
+            "enabled": true,
+            "severity": "error"
+          },
+          "no-v-for-index-as-key": {
+            "enabled": true,
+            "severity": "warning"
+          },
+          "vue-no-v-if-with-v-for": {
+            "enabled": true,
+            "severity": "error"
+          },
+          "prefer-v-once": {
+            "enabled": true,
+            "severity": "info"
+          }
+        }
+      }
+    }
+  },
+  "reporting": {
+    "autoSave": false,
+    "saveDir": ".ast-lint/reports",
+    "defaultFormat": "markdown",
+    "verbose": false,
+    "showProgress": true,
+    "maxReports": 10
+  },
+  "cache": {
+    "enabled": true,
+    "maxAge": 604800000,
+    "location": ".ast-lint/cache"
+  }
+}

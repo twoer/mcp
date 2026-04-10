@@ -1,0 +1,50 @@
+{
+  "name": "ast-lint-mcp",
+  "version": "0.1.0",
+  "description": "AST Lint MCP Server - AST-based static code analysis via Model Context Protocol",
+  "type": "module",
+  "main": "dist/index.js",
+  "bin": {
+    "ast-lint-mcp": "dist/index.js"
+  },
+  "files": [
+    "dist",
+    "src/ast-lint-core",
+    "README.md",
+    "QUICKSTART.md",
+    "TEAM_USAGE.md",
+    "INSTALL.md"
+  ],
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsx src/index.ts",
+    "watch": "tsc --watch",
+    "test": "node dist/index.js",
+    "test:integration": "npm run build && tsx test/integration.ts",
+    "bundle": "node scripts/bundle-ast-lint.js",
+    "prepublishOnly": "npm run build",
+    "release": "bash scripts/release.sh"
+  },
+  "keywords": [
+    "mcp",
+    "ast",
+    "lint",
+    "code-review",
+    "static-analysis"
+  ],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.0.4",
+    "@typescript-eslint/parser": "^8.0.0",
+    "ignore": "^5.3.0",
+    "minimatch": "^10.2.4",
+    "vue-eslint-parser": "^9.4.3",
+    "zod": "^3.23.8"
+  },
+  "devDependencies": {
+    "@types/node": "^22.0.0",
+    "tsx": "^4.0.0",
+    "typescript": "^5.6.0"
+  }
+}

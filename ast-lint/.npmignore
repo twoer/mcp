@@ -1,0 +1,14 @@
+# 开发文件
+src/**/*.test.ts
+test/
+scripts/
+docs/
+
+# 配置文件
+tsconfig.json
+.gitignore
+.git/
+
+# 其他
+*.log
+.DS_Store

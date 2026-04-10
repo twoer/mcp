@@ -1,0 +1,8 @@
+{
+  "mcpServers": {
+    "ast-lint": {
+      "command": "node",
+      "args": ["${HOME}/workspace/mcp/ast-lint/dist/index.js"]
+    }
+  }
+}
