@@ -9,3 +9,4 @@ coverage/
 .feishu-mcp/
 .claude/settings.local.json
 settings.local.json
+output/
