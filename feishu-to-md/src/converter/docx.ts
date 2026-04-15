@@ -657,6 +657,16 @@ export const transformOperationsToPhrasingContents = (
         return false
       }
 
+      // Skip inlineblock placeholders (e.g. file attachments embedded inline in text)
+      // These are space characters with an inlineblock attribute referencing a block ID
+      // whose data is not accessible through the block manager
+      if (
+        isDefined(operation.attributes) &&
+        isDefined(operation.attributes.inlineblock)
+      ) {
+        return false
+      }
+
       return true
     })
     .map(op => {

@@ -58,7 +58,55 @@ export async function convertFeishuDoc(
     // Step 1: Inject the IIFE converter script (self-executes, sets window.__feishuConverter)
     await controller.evaluate(converterScript)
 
-    // Step 2: Run conversion
+    // Step 2: Scroll document to bottom to trigger lazy-loaded blocks (tables, images, etc.)
+    console.error('Scrolling document to load all blocks...')
+    await controller.evaluate(`
+      (async function() {
+        var container = document.querySelector('#mainBox .bear-web-x-container');
+        if (!container) return;
+
+        // Scroll down in steps to trigger lazy loading
+        var scrollStep = container.clientHeight;
+        var maxScroll = container.scrollHeight;
+        var currentScroll = 0;
+
+        while (currentScroll < maxScroll) {
+          currentScroll = Math.min(currentScroll + scrollStep, maxScroll);
+          container.scrollTo({ top: currentScroll });
+          // Brief pause to let Feishu load content at this scroll position
+          await new Promise(function(r) { setTimeout(r, 300); });
+          // scrollHeight may grow as content loads
+          maxScroll = container.scrollHeight;
+        }
+
+        // Scroll back to top
+        container.scrollTo({ top: 0 });
+      })()
+    `)
+
+    // Step 3: Wait for all blocks (including nested table cells) to finish loading
+    console.error('Waiting for all blocks to be ready...')
+    await controller.waitForFunction(
+      `(function() {
+        var pm = window.PageMain;
+        if (!pm || !pm.blockManager || !pm.blockManager.rootBlockModel) return false;
+
+        function allReady(block) {
+          if (block.snapshot && block.snapshot.type === 'pending') return false;
+          if (block.children && Array.isArray(block.children)) {
+            for (var i = 0; i < block.children.length; i++) {
+              if (!allReady(block.children[i])) return false;
+            }
+          }
+          return true;
+        }
+
+        return allReady(pm.blockManager.rootBlockModel);
+      })()`,
+      documentTimeout,
+    )
+
+    // Step 4: Run conversion
     const result = await controller.evaluate<any>(`
       (async function() {
         var w = window;
